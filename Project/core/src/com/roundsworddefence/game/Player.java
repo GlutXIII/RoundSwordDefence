@@ -2,12 +2,16 @@ package com.roundsworddefence.game;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import static com.roundsworddefence.game.Images.PLAYER_SIMPLE_IMG_PATH;
+
+
 public class Player extends GameObject implements GameActions {
 
     private float trackX;
     private float trackY;
     private float velocity;
     private Position prevPosition;
+    private Integer power;
 
 
     public void changePosition(Integer newXMouse, Integer newYMouse) {
@@ -25,12 +29,15 @@ public class Player extends GameObject implements GameActions {
                 this.getPosition().setX(newXMouse);
                 this.getPosition().setY(newYMouse);
             } else {
-                this.setPrevPosition(this.getPosition());
+
+                this.setPrevPosition(new Position());
+                this.getPrevPosition().setX(this.getPosition().getX());
+                this.getPrevPosition().setY(this.getPosition().getY());
 
                 this.getPosition().setX(this.getPosition().getX() + velocityX);
                 this.getPosition().setY(this.getPosition().getY() + velocityY);
                 //COLLISION
-                this.getCollisionRect().move(this.getPosition().getX(),this.getPosition().getY());
+                this.getCollisionRect().move(this.getPosition().getX()  ,this.getPosition().getY() );
             }
         }
     }
@@ -43,16 +50,27 @@ public class Player extends GameObject implements GameActions {
         this.prevPosition = prevPosition;
     }
 
+    public Integer getPower() {
+        return power;
+    }
+
+    public void setPower(Integer power) {
+        this.power = power;
+    }
+
     @Override
     public void init() {
-        img = new Texture("player.jpg");
+        img = new Texture(PLAYER_SIMPLE_IMG_PATH);
         this.setPrevPosition(new Position());
         this.getPosition().setX(0);
         this.getPosition().setY(0);
         this.setSize(new Size());
-        this.getSize().setHeight(20);
-        this.getSize().setWidth(20);
+        this.getSize().setHeight(25);
+        this.getSize().setWidth(25);
+        this.power = 5;
+        this.setHealth(100);
         this.velocity = 20;
+        this.initAbstract();
     }
 
 

@@ -1,12 +1,14 @@
-package com.roundsworddefence.game;
+package com.roundsworddefence.game.gameObjects;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.roundsworddefence.game.gameObjects.abstractGameObjects.GameActions;
+import com.roundsworddefence.game.gameObjects.abstractGameObjects.GameObject;
+import com.roundsworddefence.game.utils.Position;
+import com.roundsworddefence.game.utils.Size;
 
-import static com.roundsworddefence.game.Images.CASTLE_IMG_PATH;
+import static com.roundsworddefence.game.utils.Images.CASTLE_IMG_PATH;
 
 public class Castle extends GameObject implements GameActions {
 

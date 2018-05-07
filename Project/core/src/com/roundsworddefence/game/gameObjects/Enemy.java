@@ -1,8 +1,16 @@
-package com.roundsworddefence.game;
+package com.roundsworddefence.game.gameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.roundsworddefence.game.gameObjects.abstractGameObjects.GameActions;
+import com.roundsworddefence.game.gameObjects.abstractGameObjects.GameObject;
+import com.roundsworddefence.game.utils.Position;
+import com.roundsworddefence.game.utils.Size;
 
-import static com.roundsworddefence.game.Images.ENEMY_SIMPLE_IMG_PATH;
+import java.util.Random;
+
+import static com.roundsworddefence.game.Game.height;
+import static com.roundsworddefence.game.Game.width;
+import static com.roundsworddefence.game.utils.Images.ENEMY_SIMPLE_IMG_PATH;
 
 public class Enemy extends GameObject implements GameActions {
 
@@ -27,8 +35,27 @@ public class Enemy extends GameObject implements GameActions {
     }
     private void generatePosition(){
         this.setPosition(new Position());
-        this.getPosition().setY(0);
-        this.getPosition().setX(0);
+        Random generator = new Random();
+        Integer decision = generator.nextInt(4);
+        switch (decision){
+            case 0:
+                this.getPosition().setX(0);
+                this.getPosition().setY(generator.nextInt(height));
+                break;
+            case 1:
+                this.getPosition().setY(0);
+                this.getPosition().setX(generator.nextInt(width));
+                break;
+            case 2:
+                this.getPosition().setX(width);
+                this.getPosition().setY(generator.nextInt(height));
+                break;
+            case 3:
+                this.getPosition().setY(height);
+                this.getPosition().setX(generator.nextInt(width));
+                break;
+        }
+
     }
 
     public void moveToBase(float baseY, float baseX){

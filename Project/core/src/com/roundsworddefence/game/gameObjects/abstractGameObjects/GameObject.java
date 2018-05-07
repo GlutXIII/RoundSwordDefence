@@ -1,9 +1,12 @@
-package com.roundsworddefence.game;
+package com.roundsworddefence.game.gameObjects.abstractGameObjects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.roundsworddefence.game.utils.CollisionRect;
+import com.roundsworddefence.game.utils.Position;
+import com.roundsworddefence.game.utils.Size;
 
 import static com.roundsworddefence.game.Game.height;
 
@@ -13,7 +16,7 @@ public class GameObject {
     private CollisionRect collisionRect;
     private Size size;
     private Position position;
-    protected Texture img;
+    public Texture img;
     private ShapeRenderer shapeRenderer;
 
     public void initAbstract() {

@@ -1,4 +1,4 @@
-package com.roundsworddefence.game;
+package com.roundsworddefence.game.utils;
 
 public class Position {
     private float x;

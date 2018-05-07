@@ -89,6 +89,7 @@ public class Game extends ApplicationAdapter {
         init();
     }
 
+    
     /**
      * Main game loop
      */

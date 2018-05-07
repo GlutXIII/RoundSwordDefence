@@ -20,7 +20,11 @@ public class Player extends GameObject implements GameActions {
     private Integer power;
     private Integer frame;
 
-
+    /**
+     * Method responsible for updating position of player to coordinates pointed by mouse
+     * @param newXMouse
+     * @param newYMouse
+     */
     public void changePosition(Integer newXMouse, Integer newYMouse) {
         trackX = newXMouse - this.getPosition().getX();
         trackY = newYMouse - this.getPosition().getY();
@@ -49,6 +53,9 @@ public class Player extends GameObject implements GameActions {
         }
     }
 
+    /**
+     * Method set boolean value to true while player is attending to inflict damage
+     */
     public void startAttack(){
         isAttacking = true;
     }
@@ -57,22 +64,9 @@ public class Player extends GameObject implements GameActions {
         frame = (frame + 1) % 8;
     }
 
-    public Position getPrevPosition() {
-        return prevPosition;
-    }
-
-    public void setPrevPosition(Position prevPosition) {
-        this.prevPosition = prevPosition;
-    }
-
-    public Integer getPower() {
-        return power;
-    }
-
-    public void setPower(Integer power) {
-        this.power = power;
-    }
-
+    /**
+     * Initialization method for player
+     */
     @Override
     public void init() {
         img = new Texture(PLAYER_SIMPLE_IMG_PATH);
@@ -90,5 +84,35 @@ public class Player extends GameObject implements GameActions {
         this.initAbstract();
     }
 
+    /**
+     * Getter for prevPosition
+     * @return Position
+     */
+    public Position getPrevPosition() {
+        return prevPosition;
+    }
 
+    /**
+     * Setter for prevPosition
+     * @param prevPosition
+     */
+    public void setPrevPosition(Position prevPosition) {
+        this.prevPosition = prevPosition;
+    }
+
+    /**
+     * Getter for power
+     * @return Integer
+     */
+    public Integer getPower() {
+        return power;
+    }
+
+    /**
+     * Setter for power
+     * @param power
+     */
+    public void setPower(Integer power) {
+        this.power = power;
+    }
 }

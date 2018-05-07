@@ -10,6 +10,9 @@ import com.roundsworddefence.game.utils.Size;
 
 import static com.roundsworddefence.game.Game.height;
 
+/**
+ * Each object in game must extend GameObject class
+ */
 public class GameObject {
 
     private Integer health;
@@ -19,27 +22,18 @@ public class GameObject {
     public Texture img;
     private ShapeRenderer shapeRenderer;
 
+    /**
+     * Method initialize shapeRenderer and collisionRect
+     */
     public void initAbstract() {
         shapeRenderer = new ShapeRenderer();
         collisionRect = new CollisionRect(this.position.getX() , height - this.position.getY() , this.size.getWidth(), this.size.getHeight());
     }
 
-    public Size getSize() {
-        return size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
+    /**
+     * Main render method responsible for drawing game object
+     * @param batch
+     */
     public void render(SpriteBatch batch){
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         drawHealth();
@@ -48,14 +42,9 @@ public class GameObject {
         batch.end();
     }
 
-    public CollisionRect getCollisionRect() {
-        return collisionRect;
-    }
-
-    public void setCollisionRect(CollisionRect collisionRect) {
-        this.collisionRect = collisionRect;
-    }
-
+    /**
+     * Method responsible for drawing hp bars
+     */
     public void drawHealth(){
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
@@ -65,10 +54,59 @@ public class GameObject {
         shapeRenderer.end();
     }
 
+
+    /**
+     * Getter for size
+     * @return Size
+     */
+    public Size getSize() {
+        return size;
+    }
+
+    /**
+     * Setter for size
+     * @param size Size
+     */
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    /**
+     * Getter for position
+     * @return position
+     */
+    public Position getPosition() {
+        return position;
+    }
+
+    /**
+     * Setter for position
+     * @param position Position
+     */
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    /**
+     * Getter for collisionRect
+     * @return CollisionRect
+     */
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
+    /**
+     * Getter for health
+     * @return Integer
+     */
     public Integer getHealth() {
         return health;
     }
 
+    /**
+     * Setter for health
+     * @param health Integer
+     */
     public void setHealth(Integer health) {
         this.health = health;
     }

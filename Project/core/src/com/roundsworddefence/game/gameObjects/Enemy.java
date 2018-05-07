@@ -19,7 +19,6 @@ public class Enemy extends GameObject implements GameActions {
     private int power;
 
     private float velocity;
-    private Position prevPosition;
 
     @Override
     public void init() {
@@ -33,6 +32,10 @@ public class Enemy extends GameObject implements GameActions {
         this.setHealth(100);
         this.initAbstract();
     }
+
+    /**
+     * Method generate random position for enemy
+     */
     private void generatePosition(){
         this.setPosition(new Position());
         Random generator = new Random();
@@ -58,6 +61,11 @@ public class Enemy extends GameObject implements GameActions {
 
     }
 
+    /**
+     * Method responsible for enemy movement "they have only one purpose of live"
+     * @param baseY
+     * @param baseX
+     */
     public void moveToBase(float baseY, float baseX){
         trackX = baseX - this.getPosition().getX();
         trackY = baseY - this.getPosition().getY();
@@ -74,10 +82,6 @@ public class Enemy extends GameObject implements GameActions {
                 this.getPosition().setY(baseY);
             } else {
 
-/*                this.setPrevPosition(new Position());
-                this.getPrevPosition().setX(this.getPosition().getX());
-                this.getPrevPosition().setY(this.getPosition().getY());*/
-
                 this.getPosition().setX(this.getPosition().getX() + velocityX);
                 this.getPosition().setY(this.getPosition().getY() + velocityY);
                 //COLLISION
@@ -86,10 +90,18 @@ public class Enemy extends GameObject implements GameActions {
         }
     }
 
+    /**
+     * Getter for power
+     * @return int
+     */
     public int getPower() {
         return power;
     }
 
+    /**
+     * Setter for power
+     * @param power
+     */
     public void setPower(int power) {
         this.power = power;
     }

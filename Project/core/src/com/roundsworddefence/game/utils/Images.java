@@ -3,6 +3,9 @@ package com.roundsworddefence.game.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class contains all paths to images in game
+ */
 public class Images {
     public static final String CASTLE_IMG_PATH = "Castle.png";
     public static final String PLAYER_SIMPLE_IMG_PATH = "Player.png";
@@ -17,6 +20,7 @@ public class Images {
     public static final String SIXTH_PLAYER_FRAME = "BohaterAtakObrot225.png";
     public static final String SEVENTH_PLAYER_FRAME = "BohaterAtakObrot270.png";
     public static final String EIGHT_PLAYER_FRAME = "BohaterAtakObrot315.png";
+
 
     public static final List<String> playerAnimationList= new ArrayList<String>();
 

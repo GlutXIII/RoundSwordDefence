@@ -20,6 +20,8 @@ public class Images {
     public static final String SIXTH_PLAYER_FRAME = "BohaterAtakObrot225.png";
     public static final String SEVENTH_PLAYER_FRAME = "BohaterAtakObrot270.png";
     public static final String EIGHT_PLAYER_FRAME = "BohaterAtakObrot315.png";
+    public static final String MAIN_MANU_IMG_PATH = "EndGame2/MainMenu2.png";
+    public static final String PLAY_BUTTON_IMG_PATH = "png/png/PlayButton.png";
 
 
     public static final List<String> playerAnimationList= new ArrayList<String>();

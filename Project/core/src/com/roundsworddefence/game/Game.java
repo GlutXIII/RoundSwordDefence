@@ -9,6 +9,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.roundsworddefence.game.gameObjects.Castle;
 import com.roundsworddefence.game.gameObjects.Enemy;
 import com.roundsworddefence.game.gameObjects.Player;
@@ -18,9 +25,7 @@ import com.roundsworddefence.game.utils.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.roundsworddefence.game.utils.Images.BACKGROUND_IMG_PATH;
-import static com.roundsworddefence.game.utils.Images.END_GAME_IMG_PATH;
-import static com.roundsworddefence.game.utils.Images.PLAYER_SIMPLE_IMG_PATH;
+import static com.roundsworddefence.game.utils.Images.*;
 
 /**
  * libGDX game loop based on http://gafferongames.com/game-physics/fix-your-timestep/
@@ -79,12 +84,26 @@ public class Game extends ApplicationAdapter {
     private int xMouse;
     private int yMouse;
 
+
+    /**
+     * Play button variables
+     */
+    private boolean isStarted = false;
+    private Stage stage;
+    private Texture myTexture;
+    private TextureRegion myTextureRegion;
+    private TextureRegionDrawable myTexRegionDrawable;
+    private ImageButton button;
+
     /**
      * Function responsible for initialization
      */
     @Override
     public void create() {
         batch = new SpriteBatch();
+
+
+        playButton();
 
         init();
     }
@@ -94,14 +113,49 @@ public class Game extends ApplicationAdapter {
      */
     @Override
     public void render() {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if(!isStarted) {
+            batch.begin();
+            batch.draw(new Texture(MAIN_MANU_IMG_PATH),0,0);
+            batch.end();
+            stage.draw();
+        }else {
+            Gdx.gl.glClearColor(1, 0, 0, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (castle.getHealth() < 0) {
-            gameOver();
-        } else {
-            mainGame();
+            if (castle.getHealth() < 0) {
+                gameOver();
+            } else {
+                mainGame();
+            }
         }
+    }
+
+    /**
+     * Method create play button TODO create buttons in other way
+     */
+    private void playButton() {
+        myTexture = new Texture(Gdx.files.internal(PLAY_BUTTON_IMG_PATH));
+
+        myTextureRegion = new TextureRegion(myTexture);
+
+        myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
+        button = new ImageButton(myTexRegionDrawable); //Set the button up
+
+        stage = new Stage(new ScreenViewport()); //Set up a stage for the ui
+
+        stage.addActor(button); //Add the button to the stage to perform rendering and take input.
+        stage.getActors().get(0).setX(400);
+        stage.getActors().get(0).setY(400);
+
+        Gdx.input.setInputProcessor(stage); //Start taking input from the ui
+
+        button.addListener(new ClickListener()
+        {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                isStarted = true;
+            }
+        });
     }
 
     /**
@@ -271,7 +325,7 @@ public class Game extends ApplicationAdapter {
         font.setColor(Color.RED);
         batch.draw(new Texture(END_GAME_IMG_PATH), 0, 0);
         batch.end();
-        renderTime(500, height - 400);
+        renderTime(570, height - 350);
 
     }
 
